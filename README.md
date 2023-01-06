@@ -4,7 +4,7 @@
 Project repository for 02476 machine learning operations
 
 
-02476 machine learning operations description - Natural Language Processing with Disaster Tweets
+02476 machine learning operations description - Natural Language Processing with Disaster Tweets 
 ------------
 
 ### Contributers 
