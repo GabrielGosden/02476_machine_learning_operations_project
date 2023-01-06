@@ -1,41 +1,7 @@
 02476_machine_learning_operations_project
 ==============================
 
-Project repository for 02476 machine learning operations
-
-
-02476 machine learning operations description - Natural Language Processing with Disaster Tweets
-------------
-
-### Contributers 
-Gabriel Gosden s174865 \
-Mads Dudzik s174855 \
-Tore Vang s183778\
-Mate Andras s213734\
-
-### Overall goal of the project
-The goal of the project is to use computer vision to solve a classification task of predicting whether a given image contains a hotdog or not.
-
-### What framework are you going to use (Kornia, Transformer, Pytorch-Geometrics)
-In this project we are going to use [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models) (also known as TIMM) which is the absolutly most used computer vision package (maybe except for torchvision). It contains models, scripts and pre trained for a lot of state-of-the-art image models within computer vision.
-
-### How to you intend to include the framework into your project
-We are planning to use the pre-trained models of the TIMM framework to perform image classification. We are planning to use a ResNet model for our image classfication. We are planning to use a lightweight version of ResNet, since the performance of the model is not important for this project. This will allow the group to focus on the pipeline instead of waiting for the model to train.
-
-### What data are you going to run on (initially, may change)
-
-We are using the Kaggle dataset [Hot dog not hot dog](https://www.kaggle.com/datasets/dansbecker/hot-dog-not-hot-dog). The dataset is created from a subset of the [Food 101](https://www.kaggle.com/dansbecker/food-101) dataset. Our dataset contains a total of 1000 images. 500 contains hotdogs and 500 does not contain hotdogs.Images that do not contain hotdogs contains other types of food. The images are of variable size and the total dataset is ~100 mb.
-
-
-### What deep learning models do you expect to use
-
-
-
-## Checklist
-See [CHECKLIST.md](https://github.com/nielstiben/MLOPS-Project/blob/main/CHECKLIST.md)
-
-
-
+Project repository for 024 machine learning operations
 
 Project Organization
 ------------
