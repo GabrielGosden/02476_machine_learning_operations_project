@@ -1,7 +1,6 @@
 02476_machine_learning_operations_project
 ==============================
 
-<<<<<<< HEAD
 Project repository for 02476 machine learning operations
 
 
@@ -37,9 +36,6 @@ See [CHECKLIST.md](https://github.com/nielstiben/MLOPS-Project/blob/main/CHECKLI
 
 
 
-=======
-Project repository for 024 machine learning operations 
->>>>>>> 11aed0e1a52d6cf545113813358cdc0c7990c692
 
 Project Organization
 ------------
