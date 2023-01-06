@@ -1,7 +1,7 @@
 02476_machine_learning_operations_project
 ==============================
 
-Project repository for 024 machine learning operations
+Project repository for 024 machine learning operations 
 
 Project Organization
 ------------
