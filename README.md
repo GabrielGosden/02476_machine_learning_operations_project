@@ -20,7 +20,7 @@ The goal of the project is to use computer vision to solve a classification task
 In this project we are going to use [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models) (also known as TIMM) which is the absolutly most used computer vision package (maybe except for torchvision). It contains models, scripts and pre trained for a lot of state-of-the-art image models within computer vision.
 
 ### How to you intend to include the framework into your project
-We are planning to use the pre-trained models of the TIMM framework to perform image classification. We are planning to use the CookieCutter file format for code structure. Git is going to be used for version control of the project. Github is the codebase for the project and DVC is going to be used for version control of the data. The group is planning to use Wandb for tracking and comparing training and evaluation runs. The group also want to include Hydra for variable handling and configuration.  
+We are planning to use the pre-trained models of the TIMM framework to perform image classification. We are planning to use the CookieCutter file format for code structure. Git is going to be used for version control of the project. Github is the codebase for the project and DVC is going to be used for version control of the data. The group is planning to use Wandb for tracking and comparing training and evaluation runs. The group also want to include Hydra for variable handling and configuration. When the pipeline is developed the group wants to create a docker image suitable for a production setting.
 
 ### What data are you going to run on (initially, may change)
 
