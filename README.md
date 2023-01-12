@@ -3,6 +3,14 @@
 
 Project repository for 02476 machine learning operations
 
+## How to build trainer docker image
+```
+docker build -f trainer.dockerfile . -t trainer:latest
+```
+## How to run trainer docker image
+```
+docker run --name <container_name> trainer:latest
+```
 
 
 02476 machine learning operations project description - Hot dog or not hot dog
