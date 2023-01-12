@@ -3,8 +3,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import click
-from model import MyAwesomeModel
-
 
 NUM_FINETUNE_CLASSES = 10
 
