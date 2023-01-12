@@ -10,6 +10,7 @@ flake8
 python-dotenv>=0.5.1
 pytest
 torch
+numpy
 
 # backwards compatibility
 pathlib2
