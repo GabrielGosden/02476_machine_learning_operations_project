@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import click
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -48,8 +49,15 @@ def train(learning_rate, batch_size, epochs):
             training_loss.append(running_loss/len(train_loader))
     
     # Save model
-    print("saving file to: " + "models/" + str(datetime.now()) + '_checkpoint.pth')
-    torch.save(model.state_dict(),"models/" + str(datetime.now()) + '_checkpoint.pth')
+    # print("saving file to: " + "models/" + str(datetime.now()) + '_checkpoint.pth')
+    # torch.save(model.state_dict(),"models/" + str(datetime.now()) + '_checkpoint.pth')
+
+    # Save figure
+    # plt.plot(training_loss)
+    # plt.xlabel("Epochs")
+    # plt.ylabel("Traning loss")
+    # plt.title("Training loss")
+    # plt.savefig('/reports/figures/' + str(datetime.now()) +'_training_loss.png')
 
 
 cli.add_command(train)
