@@ -12,11 +12,9 @@ NUM_FINETUNE_CLASSES = 2
 def cli():
     pass
 
-
-
 @click.command()
 @click.argument("model_checkpoint")
-@click.option("--batch_size", default = 64, help = "Batch size for the training and testing dataset")
+@click.option("--batch_size", default = 1, help = "Batch size for the training and testing dataset")
 
 def evaluate(model_checkpoint, batch_size):
     print("Evaluating until hitting the ceiling")
@@ -30,7 +28,9 @@ def evaluate(model_checkpoint, batch_size):
 
     for images, labels in test_loader:
         ps = torch.exp(model(images.float()))
+        # print(ps)
         top_p, top_class = ps.topk(1, dim=1)
+        print(top_class,labels)
         equals = top_class == labels.view(*top_class.shape)
         accuracy = torch.mean(equals.type(torch.FloatTensor))
 
