@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import click
 
-NUM_FINETUNE_CLASSES = 10
+NUM_FINETUNE_CLASSES = 2
 
 @click.group()
 def cli():
@@ -30,7 +30,7 @@ def train(learning_rate, batch_size, epochs):
     criterion = nn.NLLLoss()
 
     # Use DataLoader to load dataset
-    train_data = torch.load("data/processed/train_dataset.pt")
+    train_data = torch.load("data/processed/processed_train_tensor.pt")
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=False)
 
     training_loss = []
@@ -39,8 +39,8 @@ def train(learning_rate, batch_size, epochs):
         for images, labels in train_loader:
             optimizer.zero_grad()
             ## Remove this with the real dataset!
-            images = torch.reshape(images,(64,1,28,28))
-            images = torch.cat((images, images, images),1)
+            # images = torch.reshape(images,(64,1,28,28))
+            # images = torch.cat((images, images, images),1)
             ##
             output = model(images.float())
             loss = criterion(output, labels)
