@@ -42,15 +42,16 @@ def train(learning_rate, batch_size, epochs):
 
         running_loss = 0
         for images, labels in train_loader:
-            optimizer.zero_grad()
-            output = model(images.float())
-            loss = criterion(output, labels)
-            loss.backward()
-            optimizer.step()
-            running_loss += loss.item()
-        else:
-            print(f"Training loss: {running_loss/len(train_loader)}")
-            training_loss.append(running_loss/len(train_loader))
+            print(images.shape)
+        #     optimizer.zero_grad()
+        #     output = model(images.float())
+        #     loss = criterion(output, labels)
+        #     loss.backward()
+        #     optimizer.step()
+        #     running_loss += loss.item()
+        # else:
+        #     print(f"Training loss: {running_loss/len(train_loader)}")
+        #     training_loss.append(running_loss/len(train_loader))
 
 
 cli.add_command(train)
