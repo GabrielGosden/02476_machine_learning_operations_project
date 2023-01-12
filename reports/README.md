@@ -50,7 +50,7 @@ end of the project.
 
 ### Week 1
 
-* [x] Create a git repository
+* [x] __Create a git repository__
 * [x] Make sure that all team members have write access to the github repository
 * [ ] Create a dedicated environment for your project to keep track of your packages
 * [ ] Create the initial file structure using cookiecutter
