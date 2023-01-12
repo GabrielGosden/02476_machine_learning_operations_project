@@ -3,8 +3,9 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import click
+from datetime import datetime
 
-NUM_FINETUNE_CLASSES = 10
+NUM_FINETUNE_CLASSES = 2
 
 @click.group()
 def cli():
@@ -21,8 +22,7 @@ def train(learning_rate, batch_size, epochs):
 
     # Load model
     model = timm.create_model('resnet18', pretrained=True,num_classes=NUM_FINETUNE_CLASSES)
-    # model = MyAwesomeModel()
-    
+
     # Set optimizer
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -30,7 +30,7 @@ def train(learning_rate, batch_size, epochs):
     criterion = nn.NLLLoss()
 
     # Use DataLoader to load dataset
-    train_data = torch.load("data/processed/train_dataset.pt")
+    train_data = torch.load("data/processed/processed_train_tensor.pt")
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=False)
 
     training_loss = []
@@ -38,10 +38,6 @@ def train(learning_rate, batch_size, epochs):
         running_loss = 0
         for images, labels in train_loader:
             optimizer.zero_grad()
-            ## Remove this with the real dataset!
-            images = torch.reshape(images,(64,1,28,28))
-            images = torch.cat((images, images, images),1)
-            ##
             output = model(images.float())
             loss = criterion(output, labels)
             loss.backward()
@@ -50,6 +46,10 @@ def train(learning_rate, batch_size, epochs):
         else:
             print(f"Training loss: {running_loss/len(train_loader)}")
             training_loss.append(running_loss/len(train_loader))
+    
+    # Save model
+    print("saving file to: " + "models/" + str(datetime.now()) + '_checkpoint.pth')
+    torch.save(model.state_dict(),"models/" + str(datetime.now()) + '_checkpoint.pth')
 
 
 cli.add_command(train)
