@@ -1,5 +1,3 @@
-import argparse
-import sys
 import timm
 import torch
 import torch.nn as nn
@@ -8,7 +6,7 @@ import click
 from model import MyAwesomeModel
 
 
-NUM_FINETUNE_CLASSES = 2
+NUM_FINETUNE_CLASSES = 10
 
 @click.group()
 def cli():
@@ -39,19 +37,21 @@ def train(learning_rate, batch_size, epochs):
 
     training_loss = []
     for e in range(epochs):
-
         running_loss = 0
         for images, labels in train_loader:
-            print(images.shape)
-        #     optimizer.zero_grad()
-        #     output = model(images.float())
-        #     loss = criterion(output, labels)
-        #     loss.backward()
-        #     optimizer.step()
-        #     running_loss += loss.item()
-        # else:
-        #     print(f"Training loss: {running_loss/len(train_loader)}")
-        #     training_loss.append(running_loss/len(train_loader))
+            optimizer.zero_grad()
+            ## Remove this with the real dataset!
+            images = torch.reshape(images,(64,1,28,28))
+            images = torch.cat((images, images, images),1)
+            ##
+            output = model(images.float())
+            loss = criterion(output, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+        else:
+            print(f"Training loss: {running_loss/len(train_loader)}")
+            training_loss.append(running_loss/len(train_loader))
 
 
 cli.add_command(train)
