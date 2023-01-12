@@ -1,17 +1,33 @@
-# -*- coding: utf-8 -*-
 import click
+import torch
 import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
+import torchvision
+from torchvision import datasets, transforms
+import os 
 
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
 @click.argument('output_filepath', type=click.Path())
 def main(input_filepath, output_filepath):
-    """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
-    """
+
+    trainPath = input_filepath+'/train/'
+    trainDataset = torchvision.datasets.ImageFolder(
+        root=trainPath,
+        transform=torchvision.transforms.ToTensor()
+    )
+
+    testPath = input_filepath+'/test/'
+    testDataset = torchvision.datasets.ImageFolder(
+        root=testPath,
+        transform=torchvision.transforms.ToTensor()
+    )
+
+    torch.save(trainDataset, output_filepath+'/processed_train_tensor.pt')
+    torch.save(testDataset, output_filepath+'/processed_test_tensor.pt')
+
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 

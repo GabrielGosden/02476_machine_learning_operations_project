@@ -12,8 +12,9 @@ docker build -f trainer.dockerfile . -t trainer:latest
 docker run --name <container_name> trainer:latest
 ```
 
+
 02476 machine learning operations project description - Hot dog or not hot dog
-------------
+
 
 ### Contributers 
 Gabriel Gosden s174865 \
