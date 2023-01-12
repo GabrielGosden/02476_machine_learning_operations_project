@@ -15,7 +15,7 @@ def main(input_filepath, output_filepath):
 
     transformsList = transforms.Compose([
     torchvision.transforms.ToTensor(),
-    torchvision.transforms.Resize(224),
+    torchvision.transforms.Resize((224,224)),
     ])
 
     trainPath = input_filepath+'/train/'
