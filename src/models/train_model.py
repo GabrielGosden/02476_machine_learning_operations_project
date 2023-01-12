@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import click
+from datetime import datetime
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -50,6 +51,10 @@ def train(learning_rate, batch_size, epochs):
         else:
             print(f"Training loss: {running_loss/len(train_loader)}")
             training_loss.append(running_loss/len(train_loader))
+    
+    # Save model
+    print("saving file to: " + "models/" + str(datetime.now()) + '_checkpoint.pth')
+    torch.save(model.state_dict(),"models/" + str(datetime.now()) + '_checkpoint.pth')
 
 
 cli.add_command(train)
