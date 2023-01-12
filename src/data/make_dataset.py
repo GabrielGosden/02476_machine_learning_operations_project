@@ -13,16 +13,21 @@ import os
 @click.argument('output_filepath', type=click.Path())
 def main(input_filepath, output_filepath):
 
+    transformsList = transforms.Compose([
+    torchvision.transforms.ToTensor(),
+    torchvision.transforms.Resize(224),
+    ])
+
     trainPath = input_filepath+'/train/'
     trainDataset = torchvision.datasets.ImageFolder(
         root=trainPath,
-        transform=torchvision.transforms.ToTensor()
+        transform=transformsList
     )
 
     testPath = input_filepath+'/test/'
     testDataset = torchvision.datasets.ImageFolder(
         root=testPath,
-        transform=torchvision.transforms.ToTensor()
+        transform=transformsList
     )
 
     torch.save(trainDataset, output_filepath+'/processed_train_tensor.pt')
