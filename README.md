@@ -4,8 +4,9 @@
 Project repository for 02476 machine learning operations
 
 
+
 02476 machine learning operations project description - Hot dog or not hot dog
-------------
+
 
 ### Contributers 
 Gabriel Gosden s174865 \
