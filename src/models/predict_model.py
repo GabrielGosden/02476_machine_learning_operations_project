@@ -8,6 +8,12 @@ from datetime import datetime
 
 NUM_FINETUNE_CLASSES = 2
 
+@click.group()
+def cli():
+    pass
+
+
+
 @click.command()
 @click.argument("model_checkpoint")
 @click.option("--batch_size", default = 64, help = "Batch size for the training and testing dataset")
