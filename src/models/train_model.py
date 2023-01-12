@@ -22,8 +22,7 @@ def train(learning_rate, batch_size, epochs):
 
     # Load model
     model = timm.create_model('resnet18', pretrained=True,num_classes=NUM_FINETUNE_CLASSES)
-    # model = MyAwesomeModel()
-    
+
     # Set optimizer
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -39,10 +38,6 @@ def train(learning_rate, batch_size, epochs):
         running_loss = 0
         for images, labels in train_loader:
             optimizer.zero_grad()
-            ## Remove this with the real dataset!
-            # images = torch.reshape(images,(64,1,28,28))
-            # images = torch.cat((images, images, images),1)
-            ##
             output = model(images.float())
             loss = criterion(output, labels)
             loss.backward()
