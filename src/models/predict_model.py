@@ -2,7 +2,9 @@ import timm
 import torch
 import numpy as np
 import click
+import wandb
 
+wandb.init(entity="mlopsproject",project="TheMLOpsProject")
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -13,9 +15,12 @@ def cli():
 @click.command()
 @click.argument("model_checkpoint")
 @click.option("--batch_size", default = 4, help = "Batch size for the training and testing dataset")
-
 def evaluate(model_checkpoint, batch_size):
     print("Evaluating until hitting the ceiling")
+
+    config = wandb.config          # Initialize config
+    config.batch_size = batch_size
+    config.used_model_checkpoint = model_checkpoint
 
     model = timm.create_model('resnet18', pretrained=False,num_classes=NUM_FINETUNE_CLASSES)
     state_dict = torch.load(model_checkpoint)
@@ -32,7 +37,10 @@ def evaluate(model_checkpoint, batch_size):
         top_class = torch.transpose(top_class,0,1)
         train_acc = torch.sum(top_class == labels)
         accuracy_total.append(train_acc)
-    print("acc: ",(np.mean(accuracy_total)/float(batch_size))*100,"%")
+        
+    found_accuracy = (np.mean(accuracy_total)/float(batch_size))*100
+    print("acc: ",found_accuracy,"%")
+    wandb.log({"Pediction Accuracy": found_accuracy})
 
 
 cli.add_command(evaluate)
