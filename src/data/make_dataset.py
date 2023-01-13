@@ -20,7 +20,7 @@ def main(input_filepath, output_filepath):
     trainDataset = torchvision.datasets.ImageFolder(
         root=trainPath,
         transform=transformsList
-    )
+    ) 
 
     testPath = input_filepath+'/test/'
     testDataset = torchvision.datasets.ImageFolder(
