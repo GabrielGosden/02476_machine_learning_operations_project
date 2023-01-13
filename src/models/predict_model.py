@@ -1,11 +1,7 @@
 import timm
 import torch
-import torch.nn as nn
-import torch.optim as optim
-import torchmetrics
 import numpy as np
 import click
-from datetime import datetime
 
 
 NUM_FINETUNE_CLASSES = 2
