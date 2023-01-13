@@ -13,8 +13,10 @@ COPY setup.py setup.py
 COPY src/ src/
 COPY reports/ reports/
 COPY models/ models/
+COPY .dvc/ .dvc/
 COPY data.dvc data.dvc
 COPY models.dvc models.dvc
+
 
 
 WORKDIR /
