@@ -15,5 +15,7 @@ numpy
 datetime
 matplotlib
 wandb
+dvc
+
 # backwards compatibility
 pathlib2
