@@ -9,16 +9,16 @@ RUN apt update && \
 
 
 COPY requirements.txt requirements.txt
+COPY setup.py setup.py
+COPY src/ src/
+COPY reports/ reports/
+COPY models/ models/
+COPY data.dvc data.dvc
+COPY models.dvc models.dvc
+
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN dvc pull
-
-COPY setup.py setup.py
-COPY src/ src/
-COPY data/ data/
-COPY reports/ reports/
-COPY models/ models/
-
 
 ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]

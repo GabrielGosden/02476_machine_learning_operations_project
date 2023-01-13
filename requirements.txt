@@ -12,6 +12,7 @@ datetime
 matplotlib
 wandb
 dvc
+dvc[gs]
 
 # backwards compatibility
 pathlib2
