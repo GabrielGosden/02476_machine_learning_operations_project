@@ -4,9 +4,7 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 import torchvision
-from torchvision import datasets, transforms
-import os 
-
+from torchvision import transforms
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
