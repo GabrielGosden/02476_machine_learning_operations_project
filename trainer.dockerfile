@@ -16,7 +16,7 @@ RUN apt update && \
 # COPY .github/ .github/
 # COPY data.dvc data.dvc
 # COPY models.dvc models.dvc
-COPY . .
+COPY . /
 
 
 
