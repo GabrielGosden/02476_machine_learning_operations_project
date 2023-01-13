@@ -4,6 +4,9 @@ import torch.nn as nn
 import torch.optim as optim
 import click
 from datetime import datetime
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -27,11 +30,11 @@ def train(learning_rate, batch_size, epochs):
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     # Set loss function
-    criterion = nn.NLLLoss()
+    criterion = nn.CrossEntropyLoss()
 
     # Use DataLoader to load dataset
     train_data = torch.load("data/processed/processed_train_tensor.pt")
-    train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=False)
+    train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
     training_loss = []
     for e in range(epochs):
@@ -50,6 +53,14 @@ def train(learning_rate, batch_size, epochs):
     # Save model
     print("saving file to: " + "models/" + str(datetime.now()) + '_checkpoint.pth')
     torch.save(model.state_dict(),"models/" + str(datetime.now()) + '_checkpoint.pth')
+
+    # Save figure
+    training_loss = [1,2,3,4,5,6]
+    plt.plot(training_loss)
+    plt.xlabel("Epochs")
+    plt.ylabel("Traning loss")
+    plt.title("Training loss")
+    plt.savefig('reports/figures/' + str(datetime.now()) +'_training_loss.png')
 
 
 cli.add_command(train)

@@ -12,6 +12,7 @@ pytest
 torch
 numpy
 datetime
+matplotlib
 
 # backwards compatibility
 pathlib2

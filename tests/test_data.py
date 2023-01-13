@@ -1,4 +1,4 @@
-
+#%%
 import os.path
 from pathlib import Path
 import numpy as np
@@ -16,12 +16,21 @@ def test_data():
     from torch import load
 
     # load data
-    # data = load('/data/processed/')
+    test = load(path + 'processed_test_tensor.pt')
+    train = load(path + 'processed_train_tensor.pt')
+
+    # test type
+    assert str(type(test)) == "<class 'torchvision.datasets.folder.ImageFolder'>"
+    assert str(type(train)) == "<class 'torchvision.datasets.folder.ImageFolder'>"
+
+    # test shape
+    assert str(test.transform) == 'Compose(\n    ToTensor()\n    Resize(size=(224, 224), interpolation=bilinear, max_size=None, antialias=None)\n)'
+    assert str(train.transform) == 'Compose(\n    ToTensor()\n    Resize(size=(224, 224), interpolation=bilinear, max_size=None, antialias=None)\n)'
     
-    assert True
     return 
 
 def test_model():
     '''Run all tests related to the model'''
     assert True
     return 
+# %%

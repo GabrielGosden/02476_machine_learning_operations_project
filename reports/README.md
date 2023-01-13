@@ -52,11 +52,11 @@ end of the project.
 
 * [x] __Create a git repository__
 * [x] __Make sure that all team members have write access to the github repository__
-* [ ] __Create a dedicated environment for your project to keep track of your packages__
-* [ ] __Create the initial file structure using cookiecutter__
-* [ ] __Fill out the `make_dataset.py` file such that it downloads whatever data you need__
-* [ ] __Add a model file and a training script and get that running__
-* [ ] __Remember to fill out the `requirements.txt` file with whatever dependencies that you are using__
+* [x] __Create a dedicated environment for your project to keep track of your packages__
+* [x] __Create the initial file structure using cookiecutter__
+* [x] __Fill out the `make_dataset.py` file such that it downloads whatever data you need__
+* [x] __Add a model file and a training script and get that running__
+* [x] __Remember to fill out the `requirements.txt` file with whatever dependencies that you are using__
 * [ ] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
 * [x] __Setup version control for your data or part of your data__
