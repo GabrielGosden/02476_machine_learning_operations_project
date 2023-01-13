@@ -47,6 +47,13 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+    - name: Setup Google Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v1'
+      with:
+        project_id: hotdogs
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        export_default_credentials: true
+
     - name: Get data
       run: dvc pull
       env:
