@@ -21,5 +21,4 @@ COPY reports/ reports/
 COPY models/ models/
 
 
-
 ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
