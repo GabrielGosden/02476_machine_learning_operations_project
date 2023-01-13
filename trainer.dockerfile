@@ -21,7 +21,7 @@ COPY models.dvc models.dvc
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
-RUN dvc remote add -d bikes gs://hotdogs
+RUN gcloud auth application-default login
 RUN dvc pull
 
 ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
