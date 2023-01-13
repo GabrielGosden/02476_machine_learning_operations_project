@@ -13,6 +13,7 @@ COPY setup.py setup.py
 COPY src/ src/
 COPY reports/ reports/
 COPY .dvc/ .dvc/
+COPY .github/ .github/
 COPY data.dvc data.dvc
 COPY models.dvc models.dvc
 
