@@ -8,14 +8,15 @@ RUN apt update && \
 
 
 
-COPY requirements.txt requirements.txt
-COPY setup.py setup.py
-COPY src/ src/
-COPY reports/ reports/
-COPY .dvc/ .dvc/
-COPY .github/ .github/
-COPY data.dvc data.dvc
-COPY models.dvc models.dvc
+# COPY requirements.txt requirements.txt
+# COPY setup.py setup.py
+# COPY src/ src/
+# COPY reports/ reports/
+# COPY .dvc/ .dvc/
+# COPY .github/ .github/
+# COPY data.dvc data.dvc
+# COPY models.dvc models.dvc
+COPY . .
 
 
 
