@@ -1,8 +1,8 @@
 #%%
 import os.path
 from pathlib import Path
+import glob
 import numpy as np
-import click
 import timm
 from pytest import mark
 import torch
@@ -43,7 +43,8 @@ def test_model():
     '''Run all tests related to the model'''
     # Load model
     model = timm.create_model('resnet18', pretrained=False, num_classes=2)
-    state_dict = torch.load(project_dir + '/models/2023-01-13_10:20:43.801988_checkpoint.pth')
+    last_model_name = glob.glob(project_dir + '/models/*')[-1]     
+    state_dict = torch.load(last_model_name)
     model.load_state_dict(state_dict)
     # transfrom data
     test_loader = torch.utils.data.DataLoader(test, batch_size=32, shuffle=False)
