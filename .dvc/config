@@ -1,5 +1,7 @@
 [core]
-    remote = storage
+    remote = hotdog-bucket
     autostage = true
 ['remote "storage"']
     url = gdrive://1l7FXIFOvIHP8swj01UymJy0Pk12N8JXN
+['remote "hotdog-bucket"']
+    url = gs://hotdogs
