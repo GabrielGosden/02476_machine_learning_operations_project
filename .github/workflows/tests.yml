@@ -51,11 +51,10 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         project_id: mlops-hotdogs
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
 
     - name: Get data
       run: dvc pull
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Test with pytest
       run: |
