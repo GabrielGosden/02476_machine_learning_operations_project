@@ -1,7 +1,3 @@
-# local package
--e .
-
-# external requirements
 click
 Sphinx
 coverage
@@ -15,5 +11,8 @@ numpy
 datetime
 matplotlib
 wandb
+dvc
+dvc[gs]
+
 # backwards compatibility
 pathlib2

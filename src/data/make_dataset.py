@@ -4,9 +4,7 @@ import logging
 from pathlib import Path
 from dotenv import find_dotenv, load_dotenv
 import torchvision
-from torchvision import datasets, transforms
-import os 
-
+from torchvision import transforms
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
@@ -22,7 +20,7 @@ def main(input_filepath, output_filepath):
     trainDataset = torchvision.datasets.ImageFolder(
         root=trainPath,
         transform=transformsList
-    )
+    ) 
 
     testPath = input_filepath+'/test/'
     testDataset = torchvision.datasets.ImageFolder(
