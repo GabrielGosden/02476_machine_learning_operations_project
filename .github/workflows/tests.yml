@@ -34,7 +34,6 @@ jobs:
         key: ${{ matrix.os }}-py${{ matrix.python-version }}-pt${{ matrix.pytorch-version }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ matrix.os }}-py${{ matrix.python-version }}-pt${{ matrix.pytorch-version }}-pip-
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -46,20 +45,18 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Setup Google Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v1'
+      with:
+        project_id: mlops-hotdogs
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
 
     - name: Get data
       run: dvc pull
-      env:
-        GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
 
     - name: Test with pytest
       run: |
         pytest
-
-    - name: Generate Report
-      run: |
-        pip install coverage
-        coverage run -m unittest
-        
-    - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v2
+    #     coverage run -m pytest
+    # - name: Upload Coverage to Codecov
+    #   uses: codecov/codecov-action@v2
