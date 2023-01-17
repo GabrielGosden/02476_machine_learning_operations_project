@@ -20,7 +20,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     
     - name: Setup dvc
-    - uses: iterative/setup-dvc@v1
+      uses: iterative/setup-dvc@v1
     
     - name: Checkout dvc
       uses: actions/checkout@v2
