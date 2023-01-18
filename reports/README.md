@@ -105,7 +105,7 @@ end of the project.
 >
 > Answer:
 
---- question 1 fill here ---
+We are group 'Awesome 33'. 
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -116,7 +116,8 @@ end of the project.
 >
 > Answer:
 
---- question 2 fill here ---
+s174855, s174865, s183778, s213734
+
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
