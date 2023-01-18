@@ -504,4 +504,7 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
---- question 27 fill here ---
+Student s174855 was in charge of handling the data (make_data.py), WANDB integration 
+Student s174865 was in charge of 
+Student s183778 was in charge of 
+Student s213734 was in charge of 
