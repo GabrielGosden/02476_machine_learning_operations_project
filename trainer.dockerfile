@@ -7,7 +7,6 @@ RUN apt update && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 
-
 COPY requirements.txt requirements.txt
 COPY setup.py setup.py
 COPY src/ src/
@@ -21,7 +20,8 @@ COPY models.dvc models.dvc
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
-RUN gcloud auth application-default login
-RUN dvc pull
+RUN gcloud version
+# RUN gcloud auth application-default login 
+# RUN dvc pull
 
 ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
