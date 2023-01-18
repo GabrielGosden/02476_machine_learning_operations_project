@@ -274,7 +274,11 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 12 fill here ---
+To configure the experiments the argparser was utilized in the following way: python train_model.py --learning_rate 1e-3 --batch_size 64 --epochs 5 --model_arch resnet18 --optimizer_select Adam
+
+The values provided in the example above represent the default values of the training script. For usabillity help messages are also provided for each argument suxh as the help for --model_arch: "Model architecture available form TIMM". 
+
+The predict_model.py script also utilizes argparser however only with model_checkpoint and --batch_size, where the model checkpoint is the file name of the model checkpoint the predictions should be based on. 
 
 ### Question 13
 
@@ -289,7 +293,11 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 13 fill here ---
+To provide a clear overview of what experiments have been run and thus which configs have been used, it was selected to log key parameters of the training using Weights and Biases. Parameters saved include: Epochs, batchsize, learningrate, model architecture, optimizer, trainLoss and finally the CheckpointID. 
+
+Weights and Biases further saves project data such as OS, python version, link to Git repository and the Git state. This means that the code used for the run is traced on Git and can be found. 
+
+To reproduce an experiment one would have to have access to the Git and further the parameters of the run through Weights and Biases. Using the correct version of the script together with the OS & python version should make it possible to simply add the parameters to the run. All of this together provides the foundation for reproduceability.
 
 ### Question 14
 
@@ -336,7 +344,11 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 16 fill here ---
+Debugging is subjective and thus the preferred method varied from group member to group member. In general the first step is always to look at the error messages of the run which often provides enough information for a quick fix such as "x package not installed" which is then easily fixed by pip install x. 
+
+In more complex error settings the print function is often utilized as this first of all can show if the code reaches the print statement of if it crashes before this e.g. "Now I'm here!". Once the problem is narrowed down to maybe a single function call the print function can be used to show the input(s) to the function, both in terms of value but also type and dimensions.
+
+We in NO WAY consider out code to be perfect, but rather accept that it is working and thus fulfills the purpose of the scope of this project. We have not profiled our code as the dataset used is only around 500 images, meaning that 5 epochs of training took minutes even on CPU. We did therefore not see a need for optimizing the code using profiling and instead focused on the cloud integration. 
 
 ## Working in the cloud
 
