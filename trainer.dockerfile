@@ -1,8 +1,8 @@
 # Base image
 FROM python:3.9-slim
 
+ARG PORT=8080
 EXPOSE $PORT
-EXPOSE 8080
 
 # install python
 RUN apt update && \
