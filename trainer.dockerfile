@@ -2,6 +2,7 @@
 FROM python:3.9-slim
 
 EXPOSE $PORT
+EXPOSE 8080
 
 # install python
 RUN apt update && \
