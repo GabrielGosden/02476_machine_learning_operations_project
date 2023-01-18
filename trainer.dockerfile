@@ -6,7 +6,7 @@ RUN apt update && \
     apt install --no-install-recommends -y build-essential gcc && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
-
+RUN sudo apt install git-all
 RUN git clone https://github.com/GabrielGosden/02476_machine_learning_operations_project.git
 
 # COPY requirements.txt requirements.txt
