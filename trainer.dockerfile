@@ -32,7 +32,7 @@ ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN gcloud version
-# RUN gcloud auth application-default login 
-# RUN dvc pull
+RUN gcloud auth application-default login 
+RUN dvc pull
 
 ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
