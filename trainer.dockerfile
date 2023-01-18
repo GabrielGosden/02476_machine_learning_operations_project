@@ -31,6 +31,7 @@ ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 WORKDIR /   
 RUN pip install -r requirements.txt --no-cache-dir
 RUN gsutil cp gs://hotdogs2/* /data
+
 # RUN gcloud version
 # RUN gcloud init --no-browser
 # RUN gcloud auth application-default login --no-launch-browser
