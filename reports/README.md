@@ -130,7 +130,8 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 3 fill here ---
+We chose to work with the PyTorch Image Models for doing a classification task. The simplicity of the package helped the project a lot since it can easily be installed as timm using pip. From timm we can load a wide range different deep learning architectures with pretraining. We have used resnet for this project, and fine-tuned a pre-training loaded from timm. 
+A training script was not included in the installation of timm, but a clever training script using distributed training was a part of the PyTorch Image Models repository. For this project distributed training was not nessecary why we wrote our own training script using pytorch, which worked very well.
 
 ## Coding environment
 
@@ -149,7 +150,14 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 4 fill here ---
+For this project conda is used to manage the dependencies between all the packages installed. A common way to set up an environment like this would be to simply install the a setup.py file. This is however not nessecary for this project since all packages can be installed using pip using no other command. For generating a exact copy of our environment one only have to install the requirement.txt given in the repository. After installing conda the exact commands to do this are the following:
+
+conda create -n <venv name>
+conda activate <venv name> 
+
+# navigate to folder with the requirements.txt 
+pip install -r requirements.txt
+
 
 ### Question 5
 
@@ -164,7 +172,11 @@ s174855, s174865, s183778, s213734
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+The cookiecutter structure was used to organize our project. The structure did however not meet all of our requirements and did have a few features that was obsolete. Documentation and visualization where not a big part of this project why "docs", "notebooks" and "reference" folders where not used. 
+As mentioned the setup.py file was not used either due to the simplicity of the installation. 
+Instead of using the standard tox.ini file given we have chosen to run tests with pytests, which means we have added a new folder called "tests" for testing scripts that are run when typing "make tests". 
+This project also involved the use of cloud and dockers why we have several dockerfiles for training and evaluating together with a yaml config file for building and pushing the docker in the cloud. 
+Since our dataset was too big for github it is placed in a google cloud bucket and fetched using dvc when needed. Dvc require the .dvc folder and a .dvcignore file to work which also was added.
 
 ### Question 6
 
@@ -175,7 +187,7 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 6 fill here ---
+Using the workflows in github the code is always run through flake8 to test it for quality. Thus every time we commit code we are told what to correct to make higher quality code. We did however not want to implement black to autoformat our code, since this sometimes leads to unwanted behaviour. An implementation of black may be much more important when working with many people since everyone have different coding style. For larger projects a precommit may also be very helpfull, but is not a big matter in our small project. 
 
 ## Version control
 
@@ -194,7 +206,7 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 7 fill here ---
+We used pytest to test our code using the test scripts found in the "tests" folder. We tested both the dataset, the training script and the final model. The dataset was tested for correct type and shape. The output of the final model was also tested for correct shape and type. We also ran some predictions of the model and gave a warning if the accuracy was less than 50%. 
 
 ### Question 8
 
@@ -209,7 +221,7 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 8 fill here ---
+We have a code coverage of allmost 50%, this could be improved but we tested for the biggest and most important errors which is the most important. As mentioned in the lecture notes, there is no way to measure the quality of tests, but using the coverage packages we can atleast mensure how much of the code have been undergoing some kind of test. Therefore a 100% codecoverage doesn't mean that the code is indestructible, if the tests run are bad then a 100% coverage has no effect. 
 
 ### Question 9
 
@@ -224,7 +236,7 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 9 fill here ---
+Yes each member in the team has their own branch that are only merged into the main branch if all tests run are complete and if the feature implemented works perfectly. This is very important such that a minor mistake from one member would not lead to errors for every other team member. Thw workflow also ensure that a team member does not forget to test his feature properly before merging into it the main branch. The pull requst gives everyone a change to follow the changed before the final merge.
 
 ### Question 10
 
@@ -239,7 +251,7 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
---- question 10 fill here ---
+We have used dvc for our project to get the data from google cloud. This is a simple way for others to get the same data as we have used without any problems. This is also required if tests should be run on the dataset in the workflow before pushing. Thus each time we commit changes to our branch the workflow gets the data using dvc from google cloud. A service account was setup in google cloud to get a authorization key for github to access the data.
 
 ### Question 11
 
