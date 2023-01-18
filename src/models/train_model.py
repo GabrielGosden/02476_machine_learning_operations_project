@@ -19,7 +19,7 @@ def cli():
 
 @click.command()
 @click.option("--learning_rate", default=1e-3, help = 'Learning rate to use for training')
-@click.option("--batch_size", default = 64, help = "Batch size for the training and testing dataset")
+@click.option("--batch_size", default = 16, help = "Batch size for the training and testing dataset")
 @click.option("--epochs", default = 5, help = "Set the number of epochs")
 @click.option("--model_arch", default = 'resnet18', help = "Model architecture available form TIMM")
 @click.option("--optimizer_select", default = 'Adam', help = "Optimizer available from torch.optim")
