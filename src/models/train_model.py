@@ -12,8 +12,8 @@ from google.cloud import storage
 
 matplotlib.use('Agg')
 
-wandb.login(key="4b7e5e45520c218589c251e056eb7541ca081091")
-wandb.init(entity="mlopsproject",project="TheMLOpsProject")
+# wandb.login(key="4b7e5e45520c218589c251e056eb7541ca081091")
+# wandb.init(entity="mlopsproject",project="TheMLOpsProject")
 
 
 NUM_FINETUNE_CLASSES = 2
@@ -46,13 +46,6 @@ def load_train_data():
 @click.option("--model_arch", default = 'resnet18', help = "Model architecture available form TIMM")
 @click.option("--optimizer_select", default = 'Adam', help = "Optimizer available from torch.optim")
 def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
-
-    config = wandb.config          # Initialize config
-    config.batch_size = batch_size
-    config.lr = learning_rate
-    config.epochs = epochs   
-    config.model_arch = model_arch
-    config.optimizer_select = optimizer_select
 
     print("Training day and night")
 
