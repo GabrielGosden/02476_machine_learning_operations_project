@@ -34,5 +34,6 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 # CMD exec uvicorn train_model:app --port $PORT --host 0.0.0.0 --workers 1
 # ENTRYPOINT ["streamlit", "run", "src/models/train_model.py", "--server.port=8501", "--server.address=0.0.0.0"]
-# ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
-CMD ["python", "-u", "src/models/train_model.py","train"]
+ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
+# CMD ["python", "-u", "${pwd}/src/models/train_model.py","train"]
+# CMD exec 
