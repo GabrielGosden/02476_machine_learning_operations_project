@@ -329,7 +329,9 @@ To reproduce an experiment one would have to have access to the Git and further 
 >
 > Answer:
 
---- question 14 fill here ---
+![container registry](/reports/figures/GCP_bucket.png)
+![container registry](/reports/figures/GCP_bucket.png)
+![container registry](/reports/figures/GCP_bucket.png)
 
 ### Question 15
 
@@ -410,6 +412,8 @@ Since our training task was not too big and since we wanted to ensure that we ha
 >
 > Answer:
 
+![container registry](/reports/figures/GCP_bucket.png)
+      
 --- question 19 fill here ---
 
 ### Question 20
@@ -418,8 +422,8 @@ Since our training task was not too big and since we wanted to ensure that we ha
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
+![container registry](/reports/figures/container_registry1.png)
 
---- question 20 fill here ---
 
 ### Question 21
 
@@ -428,7 +432,7 @@ Since our training task was not too big and since we wanted to ensure that we ha
 >
 > Answer:
 
---- question 21 fill here ---
+![container registry](/reports/figures/cloud_build.png)
 
 ### Question 22
 
