@@ -28,6 +28,7 @@ COPY requirements_fastapi.txt requirements_fastapi.txt
 # COPY setup.py setup.py
 COPY src/ src/
 
+
 EXPOSE 8080
 
 WORKDIR /   
