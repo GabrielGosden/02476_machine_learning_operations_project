@@ -386,11 +386,11 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 > *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
 >
 > Answer:
-We have used buckets for cloud storage. This allows us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
-Compute engine to set up a virtual machine (VM) for doing actual computations.
-Triggers to trigger a docker image build each time code is pushed to main branch.
-Cloud build for build images, and cloud registry for storing images.
-vm instance for training??
+- We have used buckets for cloud storage. This allows us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
+- Gcloud Compute Engine to set up a virtual machine (VM) for doing training.
+- Gcloud Triggers to trigger a docker image build each time code is pushed to main branch.
+- GCloud build for building docker images
+- Gcloud Registry for storing images.
 
 ### Question 18
 
