@@ -84,7 +84,7 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
 
     # Use DataLoader to load dataset
     load_train_data()
-    train_data = torch.load("processed/processed_train_tensor.pt")
+    train_data = torch.load("data/processed/processed_train_tensor.pt")
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
     training_loss = []
