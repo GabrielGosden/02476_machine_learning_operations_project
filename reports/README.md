@@ -60,24 +60,24 @@ end of the project.
 * [ ] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
 * [x] __Setup version control for your data or part of your data__
-* [ ] __Construct one or multiple docker files for your code__
-* [ ] __Build the docker files locally and make sure they work as intended__
+* [x] __Construct one or multiple docker files for your code__
+* [x] __Build the docker files locally and make sure they work as intended__
 * [ ] Write one or multiple configurations files for your experiments
 * [ ] Used Hydra to load the configurations and manage your hyperparameters
 * [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] __Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,__
+* [x] __Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,__
       __consider running a hyperparameter optimization sweep.__
 * [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
-* [ ] __Write unit tests related to the data part of your code__
-* [ ] __Write unit tests related to model construction and or model training__
-* [ ] __Calculate the coverage.__
-* [ ] __Get some continuous integration running on the github repository__
-* [ ] __Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup__
-* [ ] __Create a trigger workflow for automatically building your docker images__
+* [x] __Write unit tests related to the data part of your code__
+* [x] __Write unit tests related to model construction and or model training__
+* [x] __Calculate the coverage.__
+* [x] __Get some continuous integration running on the github repository__
+* [x] __Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup__
+* [x] __Create a trigger workflow for automatically building your docker images__
 * [ ] __Get your model training in GCP using either the Engine or Vertex AI__
 * [ ] __Create a FastAPI application that can do inference using your model__
 * [ ] If applicable, consider deploying the model locally using torchserve
@@ -329,9 +329,13 @@ To reproduce an experiment one would have to have access to the Git and further 
 >
 > Answer:
 
-![container registry](/reports/figures/GCP_bucket.png)
-![container registry](/reports/figures/GCP_bucket.png)
-![container registry](/reports/figures/GCP_bucket.png)
+![container registry](/reports/figures/wandb_ss.png)
+![container registry](/reports/figures/wandb_ss_2.png)
+![container registry](/reports/figures/wandb_ss_3.png)
+
+As seen in the first image when have tracked the training loss which both inform us about if the model is converging in our experiments.
+As seen in the second image we are also tracking batch size, epochs, learning rate, model architecture, optimizer, checkpoint ID, total trained epochs and the final training loss
+As seen in the third image the predictin accuracy on the test set is displayed. 
 
 ### Question 15
 
