@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, File
 import torch
 import torchvision.models as models
 import torchvision.transforms as transforms
@@ -7,6 +7,7 @@ import os
 from PIL import Image
 import glob
 from google.cloud import storage
+import io
 
 storage_client = storage.Client()
 checkpoint_load = open("local_checkpoint.pth", "wb")
@@ -39,7 +40,8 @@ async def classify_image(file: UploadFile):
 
     # Read image file and preprocess
     image = await file.read()
-    image = Image.open(image.file)
+    image = Image.open(io.BytesIO(image))
+    # image = Image.open(image.file)
     image = preprocess_image(image)
 
     # Perform inference
@@ -47,5 +49,12 @@ async def classify_image(file: UploadFile):
         output = model(image)
         _, predicted = torch.max(output, 1)
 
+    if predicted.item() == 0:
+        return {"class_id": "IT IS A HOT DOG MY MAN #facts #AI"}
+
+    else:
+        return {"class_id": "IT AINT NO HOT DOG MY MAN #facts #AI"}
+
+
     # Return the result
-    return {"class_id": predicted.item()}
+    # return {"class_id": predicted.item()}

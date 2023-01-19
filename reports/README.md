@@ -329,9 +329,9 @@ To reproduce an experiment one would have to have access to the Git and further 
 >
 > Answer:
 
-![container registry](/reports/figures/wandb_ss.png)
-![container registry](/reports/figures/wandb_ss_2.png)
-![container registry](/reports/figures/wandb_ss_3.png)
+![wandb](/reports/figures/wandb_ss.png)
+![wandb](/reports/figures/wandb_ss_2.png)
+![wandb](/reports/figures/wandb_ss_3.png)
 
 As seen in the first image when have tracked the training loss which both inform us about if the model is converging in our experiments.
 As seen in the second image we are also tracking batch size, epochs, learning rate, model architecture, optimizer, checkpoint ID, total trained epochs and the final training loss
@@ -389,8 +389,9 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 - Gcloud bucket allow us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
 - Gcloud Compute Engine to set up a virtual machine (VM) for doing training.
 - Gcloud Triggers to trigger a docker image build each time code is pushed to main branch.
-- GCloud build for building docker images
+- GCloud build for building docker images.
 - Gcloud Registry for storing images.
+- Gcloud Run for running our model.
 
 ### Question 18
 
@@ -414,7 +415,7 @@ We used the compute engine to run our model training. It load the docker image b
 >
 > Answer:
 
-![container registry](/reports/figures/gcloud_bucket.png)
+![cloud bucket](/reports/figures/gcloud_bucket.png)
       
 In our bucket we have stored several different files.
 - model/ contains the .pth files created from training our model. This is loaded when using the fastAPI to evaluate a new image using the model
@@ -437,7 +438,7 @@ In our bucket we have stored several different files.
 >
 > Answer:
 
-![container registry](/reports/figures/cloud_build.png)
+![cloud build](/reports/figures/cloud_build.png)
 
 ### Question 22
 
@@ -453,7 +454,8 @@ In our bucket we have stored several different files.
 >
 > Answer:
 
-
+We did manage to deplay our model to the cloud. The goal was to input an image in the api and make google cloud run our model to make the prediction. For this we used google run to get the model from a docker file. The api implemented was the fastapi.  
+      
 
 ### Question 23
 
@@ -510,9 +512,9 @@ The user have 3 options to train or evaluate or code.
       
 2) The second option is to download the docker image such that one does not need the specific system requirements or worry about dependencies gone wrong. This is a very stable approach that ensure no dependencies problems, but the user still needs to have some knowledge about the code. One also still have to run the training locally, which is a problem when computer capasity is limited. As seen in the image the docker files are stored in the container registry in google cloud, and each time we push to the main branch a trigger ensures that a new docker image is build and pushed to the container registry such that the newest version is always reachable. For plotting the wandb is used. 
       
-3) Using an api to get the docker image? training? inference?
+3) The third option is to do predictions using an api. The api is set up in the cloud such that one is able to run the model without worrying about any dependencies or having to look at the code. This is the most simple approach for the user, but takes some time to set up. The predictions is made in a vm using google run.
 
-
+![diagram](/reports/figures/overviewv2.png)
 
 ### Question 26
 
@@ -526,8 +528,7 @@ The user have 3 options to train or evaluate or code.
 >
 > Answer:
 
-A project like this always causes struggles, most of the time goes with investigating problems instead of actually coding.
-The biggest challenge was figuring out how the cloud works, it has so many features and different ways to do the same things. In biggest challenge in the cloud was figuring out how the trainings script should get access to the dataset. There are several ways to train a docker image in the cloud and more ways to include the dataset. The authorization process between GitHub and the cloud also caused some trouble. Most of the remaining tasks was aldready done earlier in the exercises, why these did not cause very much trouble.
+The biggest challenge was figuring out how the cloud works, it has so many features and different ways to do the same things. In biggest challenge in the cloud was figuring out how the trainings script should get access to the dataset. There are several ways to train a docker image in the cloud and more ways to include the dataset. To make the api run on cloud was also very difficult. The authorization process between GitHub and the cloud also caused some trouble. Most of the remaining tasks was aldready done earlier in the exercises, why these did not cause very much trouble.
 We mostly used Google to figure out how to solve these problems, but the Slack channel also had a few answers to our questions. The course is also very well documented why we started reading the lecture text before moving on to other services.
 
 ### Question 27
@@ -545,10 +546,10 @@ We mostly used Google to figure out how to solve these problems, but the Slack c
 >
 > Answer:
 
-Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up the DVC and cloud services
+Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up the DVC, cloud services and deployed our model in the cloud using fastAPI
       
-Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC and cloud services and wrote a part of the report.
+Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC, cloud services, wrote a part of the report and deployed our model in the cloud using fastAPI.
       
-Cseke (s...) helped with the Google cloud setup and deployed our model in the cloud using fastAPI
+Cseke (s...) helped with the Google cloud setup and deployed our model in the cloud using fastAPI.
       
 Tore (s183778) handled the GitHub workflow with CI tests, cache, DVC pull and google authorization to test data. And wrote a part of the report.
