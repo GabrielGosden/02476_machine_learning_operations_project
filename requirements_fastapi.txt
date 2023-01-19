@@ -12,6 +12,6 @@ numpy
 fastapi
 uvicorn[standard]
 google-cloud-storage
-
+python-multipart
 # backwards compatibility
 pathlib2
