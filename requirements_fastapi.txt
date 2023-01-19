@@ -10,6 +10,7 @@ torchvision
 timm
 numpy
 fastapi
+uvicorn[standard]
 google-cloud-storage
 
 # backwards compatibility
