@@ -267,7 +267,10 @@ We have used dvc for our project to get the data from google cloud. This is a si
 >
 > Answer:
 
---- question 11 fill here ---
+Continues integration is very important to keep every part of the code up to date and catch potential errors. We have implemented a GitHub workflow that takes care of a wide range of problems and runs several tests on the code, data and code quality. This involves unit testing with pytest and linting with flake8, but we did not want to use black for autocorrecting code syntax. For running the tests, DVC pulls the data from a Google cloud bucket, which also required the workflow to get access to google cloud.
+We did only test the code using python 3.9 and Ubuntu 2204, since we all have the same setup, but if more people involved the more systems should be included.
+We also took advantage of the caching feature in our workflow due to all the dependencies that are installed each time a commit is made. This reduces the testing time significantly. The workflow can be found in our GitHub repository.
+We did not want to build the docker image in GitHub since this the image is large, and it takes a long time to build. We prefer to build it in the cloud. The same goes for implementing the training of the model in the workflow. This does not make sense in our case.
 
 ## Running code and tracking experiments
 
@@ -341,7 +344,8 @@ To reproduce an experiment one would have to have access to the Git and further 
 >
 > Answer:
 
---- question 15 fill here ---
+Docker was used to implemented to ensure good reproducibility and easy training in the cloud. Google cloud has a great way of building docker and handling docker images. Docker images can however become quite large, why we have individual images for different tasks like training and predicting to minimize the amount of packages needed to install. Docker images are created using cloud build in google cloud on trigger when a push is made to the main branch. The operation requires a cloud.yml file that tells us to build and push the docker image, the building of the docker image is specified by the docker file. When an image is successfully built, it can be found under container registry in the cloud ready for training. Training can happen both in the cloud or locally, if we want to run it locally we need to fetch the docker image from the cloud and into docker. When the image can be found by docker (docker images) it can be run using the following command "docker run --name <name> <repository>:<tag>"
+The link to one of our docker files can be found in our GitHub https://github.com/GabrielGosden/02476_machine_learning_operations_project/blob/main/trainer.dockerfile
 
 ### Question 16
 
@@ -376,8 +380,11 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 > *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
 >
 > Answer:
-
---- question 17 fill here ---
+We have used buckets for cloud storage. This allows us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
+Compute engine to set up a virtual machine (VM) for doing actual computations.
+Triggers to trigger a docker image build each time code is pushed to main branch.
+Cloud build for build images, and cloud registry for storing images.
+vm instance for training??
 
 ### Question 18
 
@@ -392,7 +399,9 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
---- question 18 fill here ---
+The compute engine ran most of our script, it builds the docker image and trains our algorithm. This means that we don't have to wait for the jobs to complete before we can use our own computer, since the cloud can handle several jobs at the same time.
+Since our training task was not too big and since we wanted to ensure that we have enough credits for the whole course, we used a VM with a CPU. It has a storage of10 GB which was enough for our project.
+
 
 ### Question 19
 
@@ -435,7 +444,7 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
---- question 22 fill here ---
+did we manage to deploy or model
 
 ### Question 23
 
@@ -450,7 +459,8 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
---- question 23 fill here ---
+Monitoring is a big and important topic. Especially, data drifting should be monitored closely. We did not do this for our project, but it would have been a nice feature, since new hot dogs come up every day that may not be in the dataset. This ensures that we will get notified if our application gets outdated, and thus keep its relevance for a longer time.
+System monitoring should be used when the number of requests on an application is high, since we do not expect a lot of people using this application (because people in general know what they are eating), we have left system monitoring out.
 
 ### Question 24
 
@@ -463,8 +473,8 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 > *costing the most was ... due to ...*
 >
 > Answer:
-
---- question 24 fill here ---
+The cost of this project was very minimal with the use of a VM with a CPU. The total cost landed at ...
+The most expensive service was the VM, but even that was very cheap.
 
 ## Overall discussion of project
 
@@ -499,7 +509,9 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
---- question 26 fill here ---
+A project like this always causes struggles, most of the time goes with investigating problems instead of actually coding.
+The biggest challenge was figuring out how the cloud works, it has so many features and different ways to do the same things. In biggest challenge in the cloud was figuring out how the trainings script should get access to the dataset. There are several ways to train a docker image in the cloud and more ways to include the dataset. The authorization process between GitHub and the cloud also caused some trouble. Most of the remaining tasks was aldready done earlier in the exercises, why these did not cause very much trouble.
+We mostly used Google to figure out how to solve these problems, but the Slack channel also had a few answers to our questions. The course is also very well documented why we started reading the lecture text before moving on to other services.
 
 ### Question 27
 
@@ -516,7 +528,7 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
-Student s174855 was in charge of handling the data (make_data.py), WANDB integration 
-Student s174865 was in charge of 
-Student s183778 was in charge of 
-Student s213734 was in charge of 
+Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up the DVC and cloud services
+Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC and cloud services and wrote a part of the report.
+Cseke (s...) helped with the Google cloud setup and deployed our model in the cloud using fastAPI
+Tore (s183778) handled the GitHub workflow with CI tests, cache, DVC pull and google authorization to test data. And wrote a part of the report.
