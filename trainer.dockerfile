@@ -23,14 +23,15 @@ COPY reports/ reports/
 
 # # Adding the package path to local
 # ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
-RUN mkdir /processed
-RUN mkdir /raw
-RUN mkdir /raw/test
-RUN mkdir /raw/train
-RUN mkdir /raw/test/not_hot_dog
-RUN mkdir /raw/test/hot_dog
-RUN mkdir /raw/train/not_hot_dog
-RUN mkdir /raw/train/hot_dog
+RUN mkdir /data
+RUN mkdir /data/processed
+RUN mkdir /data/raw
+RUN mkdir /data/raw/test
+RUN mkdir /data/raw/train
+RUN mkdir /data/raw/test/not_hot_dog
+RUN mkdir /data/raw/test/hot_dog
+RUN mkdir /data/raw/train/not_hot_dog
+RUN mkdir /data/raw/train/hot_dog
 
 WORKDIR /   
 RUN pip install -r requirements.txt --no-cache-dir

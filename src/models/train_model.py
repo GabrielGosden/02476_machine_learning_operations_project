@@ -50,9 +50,9 @@ def load_train_data():
     for blob in blobs:
         print(blob)
         if(not blob.name.endswith("/")):
-            blob.download_to_filename(blob.name)
+            blob.download_to_filename("data/" + blob.name)
     
-    train_file = open("processed/processed_train_tensor.pt", "wb")
+    train_file = open("data/processed/processed_train_tensor.pt", "wb")
     client.download_blob_to_file("gs://hotdogs2/processed/processed_train_tensor.pt", train_file)
     train_file.close()
 
@@ -84,7 +84,7 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
 
     # Use DataLoader to load dataset
     load_train_data()
-    train_data = torch.load("processed_train_tensor.pt")
+    train_data = torch.load("processed/processed_train_tensor.pt")
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
     training_loss = []
