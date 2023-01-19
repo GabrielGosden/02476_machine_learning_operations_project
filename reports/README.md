@@ -453,7 +453,7 @@ In our bucket we have stored several different files.
 >
 > Answer:
 
-did we manage to deploy or model
+
 
 ### Question 23
 
@@ -482,7 +482,7 @@ System monitoring should be used when the number of requests on an application i
 > *costing the most was ... due to ...*
 >
 > Answer:
-The cost of this project was very minimal with the use of a VM with a CPU. The total cost landed at ...
+The cost of this project was very minimal with the use of a VM with a CPU and a little dataset. The total cost landed at 1.15 dollars.
 The most expensive service was the VM, but even that was very cheap.
 
 ## Overall discussion of project
@@ -504,7 +504,15 @@ The most expensive service was the VM, but even that was very cheap.
 >
 > Answer:
 
---- question 25 fill here ---
+The user have 3 options to train or evaluate or code. 
+      
+1) Clone the github repository on your local computer. If the same dataset is used it can get pulled from a google bucket using dvc. This require some experience with python and make files to work. Also the environment has to be set up properly with our requirement file. 
+      
+2) The second option is to download the docker image such that one does not need the specific system requirements or worry about dependencies gone wrong. This is a very stable approach that ensure no dependencies problems, but the user still needs to have some knowledge about the code. One also still have to run the training locally, which is a problem when computer capasity is limited. As seen in the image the docker files are stored in the container registry in google cloud, and each time we push to the main branch a trigger ensures that a new docker image is build and pushed to the container registry such that the newest version is always reachable. For plotting the wandb is used. 
+      
+3) Using an api to get the docker image? training? inference?
+
+
 
 ### Question 26
 
@@ -538,6 +546,9 @@ We mostly used Google to figure out how to solve these problems, but the Slack c
 > Answer:
 
 Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up the DVC and cloud services
+      
 Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC and cloud services and wrote a part of the report.
+      
 Cseke (s...) helped with the Google cloud setup and deployed our model in the cloud using fastAPI
+      
 Tore (s183778) handled the GitHub workflow with CI tests, cache, DVC pull and google authorization to test data. And wrote a part of the report.
