@@ -27,6 +27,7 @@ RUN mkdir –p /raw/test/hot_dog
 RUN mkdir –p /raw/test/not_hot_dog
 RUN mkdir –p /raw/train/not_hot_dog
 RUN mkdir –p /raw/train/hot_dog
+
 WORKDIR /   
 RUN pip install -r requirements.txt --no-cache-dir
 
