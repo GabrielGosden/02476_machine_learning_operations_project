@@ -7,9 +7,14 @@ import click
 from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib
+from fastapi import FastAPI
+
+
 matplotlib.use('Agg')
 
 wandb.init(entity="mlopsproject",project="TheMLOpsProject")
+
+app = FastAPI()
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -17,6 +22,8 @@ NUM_FINETUNE_CLASSES = 2
 def cli():
     pass
 
+
+@app.get("/")
 @click.command()
 @click.option("--learning_rate", default=1e-3, help = 'Learning rate to use for training')
 @click.option("--batch_size", default = 16, help = "Batch size for the training and testing dataset")
@@ -83,6 +90,8 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
     plt.ylabel("Traning loss")
     plt.title("Training loss")
     plt.savefig('reports/figures/' + timeStamp +'_training_loss.png')
+    
+    return "saving file to: " + "models/" + timeStamp + "_checkpoint.pth"
 
 
 cli.add_command(train)

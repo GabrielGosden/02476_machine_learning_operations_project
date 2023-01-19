@@ -1,7 +1,7 @@
 # Base image
 FROM python:3.9-slim
 
-ARG PORT=8080
+# ARG PORT=8080
 EXPOSE $PORT
 
 # install python
@@ -15,10 +15,6 @@ COPY requirements.txt requirements.txt
 COPY setup.py setup.py
 COPY src/ src/
 COPY reports/ reports/
-# COPY .dvc/ .dvc/
-# COPY .github/ .github/
-# COPY data.dvc data.dvc
-# COPY models.dvc models.dvc
 
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
@@ -33,12 +29,11 @@ ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
 WORKDIR /   
 RUN pip install -r requirements.txt --no-cache-dir
+
+# Copy data for training and testing
 RUN mkdir /data
 RUN gsutil -m cp -r gs://hotdogs2/* data
 
-# RUN gcloud version
-# RUN gcloud init --no-browser
-# RUN gcloud auth application-default login --no-launch-browser
-# RUN dvc pull
 
-ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
+CMD exec uvicorn simple_fastapi_app:app --port $PORT --host 0.0.0.0 --workers 1
+# ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]

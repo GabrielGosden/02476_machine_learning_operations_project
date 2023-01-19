@@ -13,6 +13,9 @@ matplotlib
 wandb
 dvc
 dvc[gs]
+fastapi
+pydantic
+uvicorn
 
 # backwards compatibility
 pathlib2
