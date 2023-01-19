@@ -33,4 +33,4 @@ EXPOSE 8080
 WORKDIR /   
 RUN pip install -r requirements_fastapi.txt --no-cache-dir
 
-CMD ["uvicorn", "src.app.fastapi_app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "src.app.fastapi_app:app", "--host", "0.0.0.0", "--port", "8080"]
