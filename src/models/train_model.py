@@ -51,6 +51,10 @@ def load_train_data():
         print(blob)
         if(not blob.name.endswith("/")):
             blob.download_to_filename(blob.name)
+    
+    train_file = open("data/processed/processed_train_tensor.pt", "wb")
+    client.download_blob_to_file("gs://hotdogs2/processed/processed_train_tensor.pt", train_file)
+    train_file.close()
 
 
 

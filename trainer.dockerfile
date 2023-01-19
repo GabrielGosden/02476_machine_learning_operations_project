@@ -24,6 +24,7 @@ COPY reports/ reports/
 # # Adding the package path to local
 # ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 RUN mkdir /data
+RUN mkdir /data/processed
 RUN mkdir /data/raw
 RUN mkdir /data/raw/test
 RUN mkdir /data/raw/train
