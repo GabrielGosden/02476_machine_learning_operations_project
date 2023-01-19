@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # ARG PORT=8080
-EXPOSE $PORT
+EXPOSE 8501
 
 # install python
 RUN apt update && \
@@ -35,5 +35,6 @@ RUN mkdir /data
 RUN gsutil -m cp -r gs://hotdogs2/* data
 
 
-CMD exec uvicorn train_model:app --port $PORT --host 0.0.0.0 --workers 1
+# CMD exec uvicorn train_model:app --port $PORT --host 0.0.0.0 --workers 1
+ENTRYPOINT ["streamlit", "run", "src/models/train_model.py", "--server.port=8501", "--server.address=0.0.0.0"]
 # ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
