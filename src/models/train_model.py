@@ -41,8 +41,8 @@ def load_train_data():
 
 @click.command()
 @click.option("--learning_rate", default=1e-3, help = 'Learning rate to use for training')
-@click.option("--batch_size", default = 16, help = "Batch size for the training and testing dataset")
-@click.option("--epochs", default = 5, help = "Set the number of epochs")
+@click.option("--batch_size", default = 32, help = "Batch size for the training and testing dataset")
+@click.option("--epochs", default = 10, help = "Set the number of epochs")
 @click.option("--model_arch", default = 'resnet18', help = "Model architecture available form TIMM")
 @click.option("--optimizer_select", default = 'Adam', help = "Optimizer available from torch.optim")
 def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
@@ -85,15 +85,15 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-        else:
-            print(f"Training loss: {running_loss/len(train_loader)}")
-            wandb.log({"Training loss": (running_loss/len(train_loader)),"Train Epoch Count": (e+1)})
-            training_loss.append(running_loss/len(train_loader))
+        print(f"Training loss: {running_loss/len(train_loader)}")
+        wandb.log({"Training loss": (running_loss/len(train_loader)),"Train Epoch Count": (e+1)})
+        training_loss.append(running_loss/len(train_loader))
     
     # Save model
 
     timeStamp = str(datetime.now()).replace(" ","_")
     timeStamp = timeStamp.replace(".","_")
+    timeStamp = timeStamp.replace(":","-")
 
     wandb.log({"CheckpointID": (timeStamp + '_checkpoint.pth')})
 
