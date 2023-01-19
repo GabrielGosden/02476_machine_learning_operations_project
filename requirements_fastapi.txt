@@ -10,7 +10,7 @@ torchvision
 timm
 numpy
 fastapi
-#google-cloud-storage
+google-cloud-storage
 
 # backwards compatibility
 pathlib2
