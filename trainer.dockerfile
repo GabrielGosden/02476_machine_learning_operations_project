@@ -9,7 +9,7 @@ RUN apt update && \
 
 
 COPY requirements.txt requirements.txt
-COPY setup.py setup.py
+# COPY setup.py setup.py
 COPY src/ src/
 COPY reports/ reports/
 
