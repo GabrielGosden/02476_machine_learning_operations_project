@@ -35,5 +35,5 @@ RUN mkdir /data
 RUN gsutil -m cp -r gs://hotdogs2/* data
 
 
-CMD exec uvicorn simple_fastapi_app:app --port $PORT --host 0.0.0.0 --workers 1
+CMD exec uvicorn train_model:app --port $PORT --host 0.0.0.0 --workers 1
 # ENTRYPOINT ["python", "-u", "src/models/train_model.py","train"]
