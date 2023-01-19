@@ -79,7 +79,7 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
             optimizer.step()
             running_loss += loss.item()
         print(f"Training loss: {running_loss/len(train_loader)}")
-        wandb.log({"Training loss": (running_loss/len(train_loader)),"Train Epoch Count": (e+1)})
+        # wandb.log({"Training loss": (running_loss/len(train_loader)),"Train Epoch Count": (e+1)})
         training_loss.append(running_loss/len(train_loader))
     
     # Save model
@@ -88,7 +88,7 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
     timeStamp = timeStamp.replace(".","_")
     timeStamp = timeStamp.replace(":","-")
 
-    wandb.log({"CheckpointID": (timeStamp + '_checkpoint.pth')})
+    # wandb.log({"CheckpointID": (timeStamp + '_checkpoint.pth')})
 
     print("saving file to: " + timeStamp + '_checkpoint.pth')
     torch.save(model.state_dict(), timeStamp + '_checkpoint.pth')
