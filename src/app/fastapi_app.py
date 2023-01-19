@@ -6,16 +6,25 @@ import timm
 import os
 from PIL import Image
 import glob
+from google.cloud import storage
+
+storage_client = storage.Client()
+checkpoint_load = open("local_checkpoint.pth", "wb")
+storage_client.download_blob_to_file("gs://hotdogs2/models/checkpoint.pth", checkpoint_load)
+checkpoint_load.close()
+
 
 app = FastAPI()
 
 # Load the pre-trained model from a checkpoint file
 model = timm.create_model('resnet18', pretrained=True,num_classes=2)
-model_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models"))
-last_model_path = glob.glob(model_dir_path + '/checkpoints/*')[-1]
-checkpoint = torch.load(last_model_path)
+# model_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models"))
+# last_model_path = glob.glob(model_dir_path + '/checkpoints/*')[-1]
+checkpoint = torch.load("local_checkpoint.pth")
 model.load_state_dict(checkpoint)
 model.eval()
+
+
 
 @app.post("/classify-image/")
 async def classify_image(file: UploadFile):
