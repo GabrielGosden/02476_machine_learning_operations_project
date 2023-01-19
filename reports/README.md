@@ -386,7 +386,7 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 > *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
 >
 > Answer:
-- We have used buckets for cloud storage. This allows us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
+- Gcloud bucket allow us to get access to our data in the cloud with our any authorization as long as we use the data is used within the same project.
 - Gcloud Compute Engine to set up a virtual machine (VM) for doing training.
 - Gcloud Triggers to trigger a docker image build each time code is pushed to main branch.
 - GCloud build for building docker images
@@ -405,9 +405,7 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
-The compute engine ran most of our script, it builds the docker image and trains our algorithm. This means that we don't have to wait for the jobs to complete before we can use our own computer, since the cloud can handle several jobs at the same time.
-Since our training task was not too big and since we wanted to ensure that we have enough credits for the whole course, we used a VM with a CPU. It has a storage of10 GB which was enough for our project.
-
+We used the compute engine to run our model training. It load the docker image built by gcloud build and loads it using gcloud registry. We used instances placed in europe-central2-a with the following hardware: e2-medium, Intel Broadwell, 10 gb storage and we started the using a custom container: trainer_new:latest. Since our training task was not too big and since we wanted to ensure that we have enough credits for the whole course, we used a the compute engine with a CPU. 
 
 ### Question 19
 
@@ -416,9 +414,12 @@ Since our training task was not too big and since we wanted to ensure that we ha
 >
 > Answer:
 
-![container registry](/reports/figures/GCP_bucket.png)
+![container registry](/reports/figures/gcloud_bucket.png)
       
---- question 19 fill here ---
+In our bucket we have stored several different files.
+- model/ contains the .pth files created from training our model. This is loaded when using the fastAPI to evaluate a new image using the model
+- processed/ contains the .pt files for the traning and testing of the model
+- raw/ contains the raw image files as .jpg file
 
 ### Question 20
 

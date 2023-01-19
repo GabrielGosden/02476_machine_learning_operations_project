@@ -12,6 +12,7 @@ from google.cloud import storage
 
 matplotlib.use('Agg')
 
+wandb.login(key=["4b7e5e45520c218589c251e056eb7541ca081091"])
 wandb.init(entity="mlopsproject",project="TheMLOpsProject")
 
 
