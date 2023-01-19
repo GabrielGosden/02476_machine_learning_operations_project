@@ -44,18 +44,17 @@ async def classify_image(file: UploadFile):
     # image = Image.open(image.file)
     image = preprocess_image(image)
 
-# @app.post("/classify-image/")
-# async def cv_model(data: UploadFile = File(...)):
-#    with open('image.jpg', 'wb') as image:
-#       content = await data.read()
-#       image.write(content)
-#       image.close()
-
-
     # Perform inference
     with torch.no_grad():
         output = model(image)
         _, predicted = torch.max(output, 1)
 
+    if predicted.item() == 0:
+        return {"class_id": "IT IS A HOT DOG MY MAN #facts #AI"}
+
+    else:
+        return {"class_id": "IT AINT NO HOT DOG MY MAN #facts #AI"}
+
+
     # Return the result
-    return {"class_id": predicted.item()}
+    # return {"class_id": predicted.item()}
