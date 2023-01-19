@@ -5,13 +5,15 @@ import torchvision.transforms as transforms
 import timm
 import os
 from PIL import Image
+import glob
 
 app = FastAPI()
 
 # Load the pre-trained model from a checkpoint file
 model = timm.create_model('resnet18', pretrained=True,num_classes=2)
-model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "2023-01-19_10-42-10_810804_checkpoint.pth"))
-checkpoint = torch.load(model_path)
+model_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models"))
+last_model_path = glob.glob(model_dir_path + '/checkpoints/*')[-1]
+checkpoint = torch.load(last_model_path)
 model.load_state_dict(checkpoint)
 model.eval()
 
