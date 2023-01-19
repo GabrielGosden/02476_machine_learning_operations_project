@@ -43,7 +43,7 @@ def test_model():
     '''Run all tests related to the model'''
     # Load model
     model = timm.create_model('resnet18', pretrained=False, num_classes=2)
-    last_model_name = glob.glob(project_dir + '/models/*')[-1]     
+    last_model_name = glob.glob(project_dir + '/checkpoints/*')[-1]     
     state_dict = torch.load(last_model_name)
     model.load_state_dict(state_dict)
     # transfrom data
