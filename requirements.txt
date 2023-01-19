@@ -11,11 +11,7 @@ numpy
 datetime
 matplotlib
 wandb
-dvc
-dvc[gs]
-fastapi
-pydantic
-uvicorn
+google-cloud-storage
 
 # backwards compatibility
 pathlib2
