@@ -1,8 +1,8 @@
 steps:
    - name: 'gcr.io/cloud-builders/docker'
-     args: ['build','-f',trainer.dockerfile, '-t', 'gcr.io/mlops-hotdogs/trainer', '.']
+     args: ['build','-f',trainer.dockerfile, '-t', 'gcr.io/mlops-hotdogs/trainer_new', '.']
    - name: 'gcr.io/cloud-builders/docker'
-     args: ['push', 'gcr.io/mlops-hotdogs/trainer']
+     args: ['push', 'gcr.io/mlops-hotdogs/trainer_new']
   #  - name: 'gcr.io/cloud-builders/docker'
   #    args: ['build','-f',evaluate.dockerfile, '-t', 'gcr.io/mlops-hotdogs-id/evaluate', '.']
   #  - name: 'gcr.io/cloud-builders/docker'

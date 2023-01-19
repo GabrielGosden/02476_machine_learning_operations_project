@@ -7,14 +7,13 @@ import click
 from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib
-from fastapi import FastAPI
+from google.cloud import storage
 
 
 matplotlib.use('Agg')
 
 wandb.init(entity="mlopsproject",project="TheMLOpsProject")
 
-app = FastAPI()
 
 NUM_FINETUNE_CLASSES = 2
 
@@ -23,7 +22,22 @@ def cli():
     pass
 
 
-@app.get("/")
+def save_model(name):
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket('hotdogs2')
+    blob = bucket.blob(name)
+    blob.upload_from_filename(name)
+
+
+
+def load_train_data():
+    storage_client = storage.Client()
+    train_file = open("processed_train_tensor.pt", "wb")
+    storage_client.download_blob_to_file("gs://hotdogs2/processed/processed_train_tensor.pt", train_file)
+    train_file.close()
+
+
+
 @click.command()
 @click.option("--learning_rate", default=1e-3, help = 'Learning rate to use for training')
 @click.option("--batch_size", default = 16, help = "Batch size for the training and testing dataset")
@@ -56,7 +70,8 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
     criterion = nn.CrossEntropyLoss()
 
     # Use DataLoader to load dataset
-    train_data = torch.load("data/processed/processed_train_tensor.pt")
+    load_train_data()
+    train_data = torch.load("processed_train_tensor.pt")
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
     training_loss = []
@@ -81,8 +96,9 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
 
     wandb.log({"CheckpointID": (timeStamp + '_checkpoint.pth')})
 
-    print("saving file to: " + "models/" + timeStamp + '_checkpoint.pth')
-    torch.save(model.state_dict(),"models/" + timeStamp + '_checkpoint.pth')
+    print("saving file to: " + timeStamp + '_checkpoint.pth')
+    torch.save(model.state_dict(), timeStamp + '_checkpoint.pth')
+    save_model(timeStamp + '_checkpoint.pth')
 
     # Save figure
     plt.plot(training_loss)
