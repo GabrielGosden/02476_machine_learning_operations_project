@@ -27,6 +27,10 @@ COPY reports/ reports/
 WORKDIR /   
 RUN pip install -r requirements.txt --no-cache-dir
 
+RUN mkdir –p raw/test/hot_dog
+RUN mkdir –p raw/test/not_hot_dog
+RUN mkdir –p raw/train/not_hot_dog
+RUN mkdir –p raw/train/hot_dog
 # # Copy data for training and testing
 # RUN mkdir /data
 # RUN gsutil -m cp -r gs://hotdogs2/* data

@@ -1,4 +1,5 @@
 import timm
+import os
 import wandb
 import torch
 import torch.nn as nn
@@ -31,11 +32,25 @@ def save_model(name):
 
 
 
-def load_train_data():
-    storage_client = storage.Client()
-    train_file = open("processed_train_tensor.pt", "wb")
-    storage_client.download_blob_to_file("gs://hotdogs2/processed/processed_train_tensor.pt", train_file)
-    train_file.close()
+def load_train_data():                                                                      
+    # Instantiate a CGS client 
+    client=storage.Client()
+    bucket_name= "hotdogs2"
+
+    # The "folder" where the files you want to download are
+    folder="raw/"
+
+    # Create this folder locally
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+    # Retrieve all blobs with a prefix matching the folder
+    bucket=client.get_bucket(bucket_name)
+    blobs=list(bucket.list_blobs(prefix=folder))
+    for blob in blobs:
+        print(blob)
+        if(not blob.name.endswith("/")):
+            blob.download_to_filename(blob.name)
 
 
 
