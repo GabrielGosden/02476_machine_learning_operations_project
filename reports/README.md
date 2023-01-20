@@ -550,6 +550,6 @@ Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up 
       
 Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC, cloud services, wrote a part of the report and deployed our model in the cloud using fastAPI.
       
-Cseke (s...) helped with the Google cloud setup and deployed our model in the cloud using fastAPI.
+Cseke (s213734) helped with the Google cloud setup and deploying our model in the cloud using fastAPI, setting up DVC with Cloud Storage.
       
 Tore (s183778) handled the GitHub workflow with CI tests, cache, DVC pull and google authorization to test data. And wrote a part of the report.
