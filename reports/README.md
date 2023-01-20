@@ -86,17 +86,17 @@ end of the project.
 ### Week 3
 
 * [ ] Check how robust your model is towards data drifting
-* [x] Setup monitoring for the system telemetry of your deployed model
-* [x] Setup monitoring for the performance of your deployed model
+* [ ] Setup monitoring for the system telemetry of your deployed model
+* [ ] Setup monitoring for the performance of your deployed model
 * [ ] If applicable, play around with distributed data loading
 * [ ] If applicable, play around with distributed model training
 * [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [x] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Make sure all group members have a understanding about all parts of the project
+* [x] Uploaded all your code to github
 
 ## Group information
 
@@ -329,9 +329,9 @@ To reproduce an experiment one would have to have access to the Git and further 
 >
 > Answer:
 
-![wandb](/reports/figures/wandb_ss.png)
-![wandb](/reports/figures/wandb_ss_2.png)
-![wandb](/reports/figures/wandb_ss_3.png)
+![wandb1](/reports/figures/wandb_ss.png)
+![wandb2](/reports/figures/wandb_ss_2.png)
+![wandb3](/reports/figures/wandb_ss_3.png)
 
 As seen in the first image when have tracked the training loss which both inform us about if the model is converging in our experiments.
 As seen in the second image we are also tracking batch size, epochs, learning rate, model architecture, optimizer, checkpoint ID, total trained epochs and the final training loss
@@ -416,7 +416,7 @@ We used instances placed in europe-central2-a with the following hardware: e2-me
 >
 > Answer:
 
-![cloud bucket](/reports/figures/gcloud_bucket.png)
+![cloudbucket](/reports/figures/gcloud_bucket.png)
       
 In our bucket we have stored several different files.
 - model/ contains the .pth files created from training our model. This is loaded when using the fastAPI to evaluate a new image using the model
@@ -429,7 +429,7 @@ In our bucket we have stored several different files.
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
-![container registry](/reports/figures/container_registry1.png)
+![container_registry](/reports/figures/container_registry1.png)
 
 
 ### Question 21
@@ -439,7 +439,7 @@ In our bucket we have stored several different files.
 >
 > Answer:
 
-![cloud build](/reports/figures/cloud_build.png)
+![cloudbuild](/reports/figures/cloud_build.png)
 
 ### Question 22
 

@@ -63,17 +63,17 @@ end of the project.</p>
 <h3>Week 3</h3>
 <ul>
 <li>[ ] Check how robust your model is towards data drifting</li>
-<li>[x] Setup monitoring for the system telemetry of your deployed model</li>
-<li>[x] Setup monitoring for the performance of your deployed model</li>
+<li>[ ] Setup monitoring for the system telemetry of your deployed model</li>
+<li>[ ] Setup monitoring for the performance of your deployed model</li>
 <li>[ ] If applicable, play around with distributed data loading</li>
 <li>[ ] If applicable, play around with distributed model training</li>
 <li>[ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed</li>
 </ul>
 <h3>Additional</h3>
 <ul>
-<li>[ ] Revisit your initial project description. Did the project turn out as you wanted?</li>
-<li>[ ] Make sure all group members have a understanding about all parts of the project</li>
-<li>[ ] Uploaded all your code to github</li>
+<li>[x] Revisit your initial project description. Did the project turn out as you wanted?</li>
+<li>[x] Make sure all group members have a understanding about all parts of the project</li>
+<li>[x] Uploaded all your code to github</li>
 </ul>
 <h2>Group information</h2>
 <h3>Question 1</h3>
@@ -249,9 +249,9 @@ especially the reproducibility of your experiments.</p>
 <em>As seen in the second image we are also tracking ... and ...</em></p>
 <p>Answer:</p>
 </blockquote>
-<p><img alt="wandb" src="/reports/figures/wandb_ss.png" />
-<img alt="wandb" src="/reports/figures/wandb_ss_2.png" />
-<img alt="wandb" src="/reports/figures/wandb_ss_3.png" /></p>
+<p><img alt="wandb1" src="/reports/figures/wandb_ss.png" />
+<img alt="wandb2" src="/reports/figures/wandb_ss_2.png" />
+<img alt="wandb3" src="/reports/figures/wandb_ss_3.png" /></p>
 <p>As seen in the first image when have tracked the training loss which both inform us about if the model is converging in our experiments.
 As seen in the second image we are also tracking batch size, epochs, learning rate, model architecture, optimizer, checkpoint ID, total trained epochs and the final training loss
 As seen in the third image the predictin accuracy on the test set is displayed. </p>
@@ -316,7 +316,7 @@ We used instances placed in europe-central2-a with the following hardware: e2-me
 <strong>You can take inspiration from <a href="figures/bucket.png">this figure</a>.</strong></p>
 <p>Answer:</p>
 </blockquote>
-<p><img alt="cloud bucket" src="/reports/figures/gcloud_bucket.png" /></p>
+<p><img alt="cloudbucket" src="/reports/figures/gcloud_bucket.png" /></p>
 <p>In our bucket we have stored several different files.
 - model/ contains the .pth files created from training our model. This is loaded when using the fastAPI to evaluate a new image using the model
 - processed/ contains the .pt files for the traning and testing of the model
@@ -326,7 +326,7 @@ We used instances placed in europe-central2-a with the following hardware: e2-me
 <p><strong>Upload one image of your GCP container registry, such that we can see the different images that you have stored.</strong>
 <strong>You can take inspiration from <a href="figures/registry.png">this figure</a>.</strong></p>
 <p>Answer:
-<img alt="container registry" src="/reports/figures/container_registry1.png" /></p>
+<img alt="container_registry" src="/reports/figures/container_registry1.png" /></p>
 </blockquote>
 <h3>Question 21</h3>
 <blockquote>
@@ -334,7 +334,7 @@ We used instances placed in europe-central2-a with the following hardware: e2-me
 <strong>your project. You can take inspiration from <a href="figures/build.png">this figure</a>.</strong></p>
 <p>Answer:</p>
 </blockquote>
-<p><img alt="cloud build" src="/reports/figures/cloud_build.png" /></p>
+<p><img alt="cloudbuild" src="/reports/figures/cloud_build.png" /></p>
 <h3>Question 22</h3>
 <blockquote>
 <p><strong>Did you manage to deploy your model, either in locally or cloud? If not, describe why. If yes, describe how and</strong>
