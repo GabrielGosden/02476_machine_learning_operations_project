@@ -78,16 +78,16 @@ end of the project.
 * [x] __Get some continuous integration running on the github repository__
 * [x] __Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup__
 * [x] __Create a trigger workflow for automatically building your docker images__
-* [ ] __Get your model training in GCP using either the Engine or Vertex AI__
-* [ ] __Create a FastAPI application that can do inference using your model__
+* [x] __Get your model training in GCP using either the Engine or Vertex AI__
+* [x] __Create a FastAPI application that can do inference using your model__
 * [ ] If applicable, consider deploying the model locally using torchserve
-* [ ] __Deploy your model in GCP using either Functions or Run as the backend__
+* [x] __Deploy your model in GCP using either Functions or Run as the backend__
 
 ### Week 3
 
 * [ ] Check how robust your model is towards data drifting
-* [ ] Setup monitoring for the system telemetry of your deployed model
-* [ ] Setup monitoring for the performance of your deployed model
+* [x] Setup monitoring for the system telemetry of your deployed model
+* [x] Setup monitoring for the performance of your deployed model
 * [ ] If applicable, play around with distributed data loading
 * [ ] If applicable, play around with distributed model training
 * [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed
@@ -130,8 +130,8 @@ s174855, s174865, s183778, s213734
 >
 > Answer:
 
-We chose to work with the PyTorch Image Models for doing a classification task. The simplicity of the package helped the project a lot since it can easily be installed as timm using pip. From timm we can load a wide range different deep learning architectures with pretraining. We have used resnet for this project, and fine-tuned a pre-training loaded from timm. 
-A training script was not included in the installation of timm, but a clever training script using distributed training was a part of the PyTorch Image Models repository. For this project distributed training was not nessecary why we wrote our own training script using pytorch, which worked very well.
+We chose to work with PyTorch Image Models for our classification task. The simplicity of the package made the setting up of the model incredibly simple. The library can easily be installed as timm using pip and it contains a wide range of different deep learning architectures with pretrained weights available. We have used resnet18 for this project and fine-tuned it on our own dataset.
+The example training script for timm is very robust and lengthy, and while it is useful for setting up distributed training, the script was a bit overkill for us. Thus we wrote our own much simpler training script based on our pytorch knowledge.
 
 ## Coding environment
 
@@ -150,7 +150,7 @@ A training script was not included in the installation of timm, but a clever tra
 >
 > Answer:
 
-For this project conda is used to manage the dependencies between all the packages installed. A common way to set up an environment like this would be to simply install the a setup.py file. This is however not nessecary for this project since all packages can be installed using pip using no other command. For generating a exact copy of our environment one only have to install the requirement.txt given in the repository. After installing conda the exact commands to do this are the following:
+For this project conda is used to manage the dependencies between all the packages installed. A common way to set up an environment like this would be to simply install a setup.py file. This is however not nessecary for this project since all packages can be installed using pip using no other command. For generating a exact copy of our environment one only have to install the requirement.txt given in the repository. After installing conda the exact commands to do this are the following:
 
 conda create -n <venv name>
 conda activate <venv name> 
@@ -172,11 +172,11 @@ pip install -r requirements.txt
 > *experiments.*
 > Answer:
 
-The cookiecutter structure was used to organize our project. The structure did however not meet all of our requirements and did have a few features that was obsolete. Documentation and visualization where not a big part of this project why "docs", "notebooks" and "reference" folders where not used. 
+The cookiecutter structure was used to organize our project. The structure did however not meet all of our requirements and did have a few features that was obsolete. Documentation and visualization were not a big part of this project so in the end "docs", "notebooks" and "reference" folders were not used. 
 As mentioned the setup.py file was not used either due to the simplicity of the installation. 
-Instead of using the standard tox.ini file given we have chosen to run tests with pytests, which means we have added a new folder called "tests" for testing scripts that are run when typing "make tests". 
-This project also involved the use of cloud and dockers why we have several dockerfiles for training and evaluating together with a yaml config file for building and pushing the docker in the cloud. 
-Since our dataset was too big for github it is placed in a google cloud bucket and fetched using dvc when needed. Dvc require the .dvc folder and a .dvcignore file to work which also was added.
+We did not see the need to set up tox to have our pytests checked against multiple environments as we were working with fixed setups and the main goal was to have our final trained model in a container hosted on Cloud Run.
+The project involved the use of cloud and docker. We made seperate dockerfiles for training and evaluating the model and for the final fastapi application, together with a yaml config file for building and pushing the docker in the cloud. 
+Our dataset is stored both in a Cloud Storage Bucket, and on Google drive for both of which we have used dvc to manage. For this reason the github repository also includes dvc related config and info files.
 
 ### Question 6
 
@@ -187,7 +187,7 @@ Since our dataset was too big for github it is placed in a google cloud bucket a
 >
 > Answer:
 
-Using the workflows in github the code is always run through flake8 to test it for quality. Thus every time we commit code we are told what to correct to make higher quality code. We did however not want to implement black to autoformat our code, since this sometimes leads to unwanted behaviour. An implementation of black may be much more important when working with many people since everyone have different coding style. For larger projects a precommit may also be very helpfull, but is not a big matter in our small project. 
+Using the workflows in github the code is always run through flake8 to test it for quality. Thus every time we commit code we are told what to correct to achieve higher quality code. We did however not use black to autoformat our code, since this sometimes leads to unwanted behaviour. The use of these tools may be much more important when working with many people since everyone have different coding style and with extensive codebase small formating issues can add up quickly and result in hardly readable code. For larger projects a precommit may also be very helpfull, but is not a big matter in our small project. 
 
 ## Version control
 
@@ -221,7 +221,7 @@ We used pytest to test our code using the test scripts found in the "tests" fold
 >
 > Answer:
 
-We have a code coverage of allmost 50%, this could be improved but we tested for the biggest and most important errors which is the most important. As mentioned in the lecture notes, there is no way to measure the quality of tests, but using the coverage packages we can atleast mensure how much of the code have been undergoing some kind of test. Therefore a 100% codecoverage doesn't mean that the code is indestructible, if the tests run are bad then a 100% coverage has no effect. 
+We have a code coverage of almost 50%, this could be improved but we tested for the biggest and most important errors which is the most important. As mentioned in the lecture notes, there is no way to measure the quality of tests, but using the coverage packages we can atleast measure how much of the code have been covered by our tests. Therefore a 100% codecoverage doesn't mean that the code is indestructible, even if the tests involve 100% of the code it doesn't necessarily mean that they wrap all edge-cases and functionality gaps as well. 
 
 ### Question 9
 
@@ -236,7 +236,7 @@ We have a code coverage of allmost 50%, this could be improved but we tested for
 >
 > Answer:
 
-Yes each member in the team has their own branch that are only merged into the main branch if all tests run are complete and if the feature implemented works perfectly. This is very important such that a minor mistake from one member would not lead to errors for every other team member. Thw workflow also ensure that a team member does not forget to test his feature properly before merging into it the main branch. The pull requst gives everyone a change to follow the changed before the final merge.
+Yes each member in the team had their own branches for each bigger change that they were working on, which were only merged into the main branch if all tests run were complete and if the feature implemented worked as intended. This is very important such that a minor mistake from one member would not lead to errors for every other team member. This workflow ensures that a team member does not forget to test his feature properly before merging into it the main branch. The pull requests gave everyone a chance to review the changes before the final merge. In some cases we had to make modifications directly to main due to conflicts and git issues, but we tried to follow this principle as much as we could.
 
 ### Question 10
 
@@ -251,7 +251,7 @@ Yes each member in the team has their own branch that are only merged into the m
 >
 > Answer:
 
-We have used dvc for our project to get the data from google cloud. This is a simple way for others to get the same data as we have used without any problems. This is also required if tests should be run on the dataset in the workflow before pushing. Thus each time we commit changes to our branch the workflow gets the data using dvc from google cloud. A service account was setup in google cloud to get a authorization key for github to access the data.
+We have used dvc for our project to store our data in Cloud Storage buckets and on Google Drive. This was a simple way to share the data and have it always up to date for everyone. We also integrated dvc into our Github Action workflows so that we can run checks directly against our data as well. Thus each time we commit changes to our branch the workflow gets the data using dvc from google cloud. A service account was setup in google cloud to have access to the data stored in the buckets.
 
 ### Question 11
 
