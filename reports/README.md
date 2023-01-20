@@ -546,9 +546,9 @@ We mostly used Google to figure out how to solve these problems, but the Slack c
 >
 > Answer:
 
-Gabriel (s..) set up our GitHub with the cookiecutter structure. He also set up the DVC, cloud services and deployed our model in the cloud using fastAPI
+Gabriel (s174865) set up our GitHub with the cookiecutter structure. He also set up the DVC, cloud services and deployed our model in the cloud using fastAPI. Worked with the script for training the data and also setting up the training using the Cloud Engine.
       
-Mads (s...) set up the docker file and added configuration to the code. He also set up the DVC, cloud services, wrote a part of the report and deployed our model in the cloud using fastAPI.
+Mads (s174855) set up the docker file and added configuration to the code. He also set up the DVC, cloud services, wrote a part of the report and deployed our model in the cloud using fastAPI. Creating the script for processing the raw data.
       
 Cseke (s213734) helped with the Google cloud setup and deploying our model in the cloud using fastAPI, setting up DVC with Cloud Storage.
       
