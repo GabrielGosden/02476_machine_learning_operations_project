@@ -121,6 +121,7 @@ def train(learning_rate, batch_size, epochs, model_arch, optimizer_select):
     # plt.savefig('reports/figures/' + timeStamp +'_training_loss.png')
     
     # return "saving file to: " + "models/" + timeStamp + "_checkpoint.pth"
+    
 
 
 cli.add_command(train)
