@@ -187,7 +187,7 @@ Our dataset is stored both in a Cloud Storage Bucket, and on Google drive for bo
 >
 > Answer:
 
-Using the workflows in github the code is always run through flake8 to test it for quality. Thus every time we commit code we are told what to correct to achieve higher quality code. We did however not use black to autoformat our code, since this sometimes leads to unwanted behaviour. The use of these tools may be much more important when working with many people since everyone have different coding style and with extensive codebase small formating issues can add up quickly and result in hardly readable code. For larger projects a precommit may also be very helpfull, but is not a big matter in our small project. 
+Workflows in github run the code through flake8 to test it for quality. Thus every time we commit code we are told what to correct to achieve higher quality code. We did however not use black to autoformat our code, since this sometimes leads to unwanted behaviour. The use of these tools may be much more important when working with many people since everyone have different coding style and with extensive codebase small formating issues can add up quickly and result in hardly readable code. In larger projects precommits are very helpfull, but are not needed in our small project. 
 
 ## Version control
 
@@ -221,7 +221,7 @@ We used pytest to test our code using the test scripts found in the "tests" fold
 >
 > Answer:
 
-We have a code coverage of almost 50%, this could be improved but we tested for the biggest and most important errors which is the most important. As mentioned in the lecture notes, there is no way to measure the quality of tests, but using the coverage packages we can atleast measure how much of the code have been covered by our tests. Therefore a 100% codecoverage doesn't mean that the code is indestructible, even if the tests involve 100% of the code it doesn't necessarily mean that they wrap all edge-cases and functionality gaps as well. 
+We have a code coverage of almost 50%, this could of course be improved but we have instead tested for the biggest and most important errors which is the most important. As mentioned in the lecture notes, there is no way to measure the quality of tests, but using the coverage packages we can atleast measure how much of the code have been covered by our tests. Therefore a 100% code coverage doesn't mean that the code is indestructible, even if the tests involve 100% of the code it doesn't necessarily mean that they wrap all edge-cases and functionality gaps as well. 
 
 ### Question 9
 
@@ -251,7 +251,7 @@ Yes each member in the team had their own branches for each bigger change that t
 >
 > Answer:
 
-We have used dvc for our project to store our data in Cloud Storage buckets and on Google Drive. This was a simple way to share the data and have it always up to date for everyone. We also integrated dvc into our Github Action workflows so that we can run checks directly against our data as well. Thus each time we commit changes to our branch the workflow gets the data using dvc from google cloud. A service account was setup in google cloud to have access to the data stored in the buckets.
+We have used dvc in out project to version controll the dataset. DVC was configured to store our data in Cloud Storage buckets and on Google Drive. This was a simple way to share the data and have it always up to date for everyone. We also integrated dvc into our Github Action workflows so that we can run checks directly against our data as well. Thus each time we commit changes to our branch the workflow gets the data using dvc from google cloud. A service account was setup in google cloud to have access to the data stored in the buckets.
 
 ### Question 11
 
@@ -406,7 +406,8 @@ We in NO WAY consider out code to be perfect, but rather accept that it is worki
 >
 > Answer:
 
-We used the compute engine to run our model training. It load the docker image built by gcloud build and loads it using gcloud registry. We used instances placed in europe-central2-a with the following hardware: e2-medium, Intel Broadwell, 10 gb storage and we started the using a custom container: trainer_new:latest. Since our training task was not too big and since we wanted to ensure that we have enough credits for the whole course, we used a the compute engine with a CPU. 
+We used the compute engine to run our model training. It loads the docker container from the container registry were it was pushed from gcloud build where the container was build triggered by a push to github. The VM was configured to run the docker container on boot using the entrypoint defined in the dockerfile. 
+We used instances placed in europe-central2-a with the following hardware: e2-medium, Intel Broadwell, 10 gb storage and we started the using a custom container: trainer_new:latest. Since our training task was not too big and since we wanted to ensure that we have enough credits for the whole course, we used a the compute engine with a CPU. 
 
 ### Question 19
 
@@ -455,6 +456,7 @@ In our bucket we have stored several different files.
 > Answer:
 
 We did manage to deplay our model to the cloud. The goal was to input an image in the api and make google cloud run our model to make the prediction. For this we used google run to get the model from a docker file. The api implemented was the fastapi.  
+Cloud run was configured to grab the latest image available in the conatiner registry, meaning that it will update once a new image is pushed to the registry. The fastapi container then grabs the newest model directly from the bucket and thus everything should be up to date as the latest version of everything.
       
 
 ### Question 23
@@ -528,7 +530,7 @@ The user have 3 options to train or evaluate or code.
 >
 > Answer:
 
-The biggest challenge was figuring out how the cloud works, it has so many features and different ways to do the same things. In biggest challenge in the cloud was figuring out how the trainings script should get access to the dataset. There are several ways to train a docker image in the cloud and more ways to include the dataset. To make the api run on cloud was also very difficult. The authorization process between GitHub and the cloud also caused some trouble. Most of the remaining tasks was aldready done earlier in the exercises, why these did not cause very much trouble.
+The biggest challenge was figuring out how the cloud works, it has so many features and different ways to do the same things. The biggest challenge in the cloud was figuring out how the trainings script should get access to the dataset. There are several ways to train a docker image in the cloud and more ways to include the dataset. To make the api run on cloud was also very difficult. The authorization process between GitHub and the cloud also caused some trouble. Most of the remaining tasks was aldready done earlier in the exercises, why these did not cause very much trouble. In general the most challeging part was the frustration from waiting! Everytime a new version was pushed it took around 20 minutes before a new container was built, and then it could be tested. So it was debugging with 20 minute delays between each 'fix'... But once it worked, the satisfaction was enormous!
 We mostly used Google to figure out how to solve these problems, but the Slack channel also had a few answers to our questions. The course is also very well documented why we started reading the lecture text before moving on to other services.
 
 ### Question 27
