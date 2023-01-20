@@ -155,7 +155,7 @@ For this project conda is used to manage the dependencies between all the packag
 conda create -n <venv name>
 conda activate <venv name> 
 
-# navigate to folder with the requirements.txt 
+Then navigate to folder with the requirements.txt 
 pip install -r requirements.txt
 
 
